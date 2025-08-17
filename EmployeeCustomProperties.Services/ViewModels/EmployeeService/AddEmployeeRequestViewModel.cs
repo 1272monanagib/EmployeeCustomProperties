@@ -15,7 +15,8 @@ namespace EmployeeCustomProperties.Services.ViewModels.EmployeeService
         public string Code { get; set; }
         [Required]
         public string Name { get; set; }
-        public List<AddCustomPropertyRequestViewModel> CustomPropertiesRequest { get; set; } = new List<AddCustomPropertyRequestViewModel>();
+        public string CustomPropertiesJson { get; set; }
+        //public List<AddCustomPropertyRequestViewModel> CustomPropertiesRequest { get; set; } = new List<AddCustomPropertyRequestViewModel>();
     }
   
 }

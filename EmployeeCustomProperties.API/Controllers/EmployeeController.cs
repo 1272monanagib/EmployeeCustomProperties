@@ -14,7 +14,7 @@ namespace EmployeeCustomProperties.API.Controllers
             _employeeService = employeeService;
         }
         [HttpPost("Add")]
-        public async Task<ActionResult<GetEmployeeRepsonseViewModel>> AddEmployee([FromBody]AddEmployeeRequestViewModel addEmployeeRequestViewModel)
+        public async Task<ActionResult<GetEmployeeRepsonseViewModel>> AddEmployee([FromForm]AddEmployeeRequestViewModel addEmployeeRequestViewModel)
         {
             var response = await _employeeService.AddEmployee(addEmployeeRequestViewModel);
             return response.IsSuccess ? Ok(response.Data) : BadRequest(response.ErrorMessage);

@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EmployeeCustomProperties.Services.Implementations
@@ -25,11 +27,16 @@ namespace EmployeeCustomProperties.Services.Implementations
         {
             try
             {
+                var customProperties = new List<AddCustomPropertyRequestViewModel>();
+                if (!string.IsNullOrEmpty(addEmployeeRequestViewModel.CustomPropertiesJson))
+                {
+                    customProperties = JsonSerializer.Deserialize<List<AddCustomPropertyRequestViewModel>>(addEmployeeRequestViewModel.CustomPropertiesJson);   
+                }
                 var newEmployee = new Employee
                 {
                     Code = addEmployeeRequestViewModel.Code,
                     Name = addEmployeeRequestViewModel.Name,
-                    CustomProperties = addEmployeeRequestViewModel.CustomPropertiesRequest
+                    CustomProperties = customProperties
                         .Select(cp => new CustomProperty
                         {
                             Type = cp.Type,
